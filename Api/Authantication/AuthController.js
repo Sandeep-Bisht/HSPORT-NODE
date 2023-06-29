@@ -15,13 +15,10 @@ module.exports = {
       } else {
         try {
           var data = {
-            username: req.body.username,
             password: hash,
             email: req.body.email,
-            accountId : uuidv4(),
-            phonenumber: req.body.phonenumber,
             role: req.body.role,
-            userStatus: req.body.userStatus,            
+            userStatus: "active",            
           };
           AuthService.create(data)
             .then((result) => {

@@ -1,6 +1,7 @@
 const AuthModal =require('./AuthModel');
 module.exports={
 create:(data)=>{
+    console.log("inisde cretae service", data)
     return AuthModal.create(data)
 },
 isuser:(data)=>{
@@ -21,7 +22,7 @@ find_and_delete:(_id)=>{
 find_by_id_update:(_id,data)=>{
     return AuthModal.findByIdAndUpdate({_id},data)
 },
-findOne:(query)=>{
-    return AuthModal.findOne(query);
-}
+// findOne:(query)=>{
+//     return AuthModal.findOne(query);
+// }
 }

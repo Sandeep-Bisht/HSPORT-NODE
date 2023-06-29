@@ -49,6 +49,6 @@ const ProductSchema = new Schema({
   },
   manufacturer: { type: Schema.Types.ObjectId, ref: "manufacturer" },
   subcategory: { type: Schema.Types.ObjectId, ref: "SubCategory" },
-});
+}, {timestamps: true });
 const model = mongoose.model("Product", ProductSchema);
 module.exports = model;
