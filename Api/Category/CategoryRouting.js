@@ -1,5 +1,5 @@
 const CategoryController = require("./CategoryController");
-const upload=require('.././/Multer')
+const upload=require('../Multer')
 const router = require("express").Router();
 const cors = require("cors");
 router.use(cors({ origin: true }));
