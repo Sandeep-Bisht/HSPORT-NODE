@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const LoginRouter=require('./Api/Authantication/AuthRouting');
 const ProductRouter = require('./Api/Product/ProductRouting');
+const CategoryRouter = require('./Api/Category/CategoryRouting')
 
 
 db();
@@ -19,6 +20,7 @@ app.use(cors({ origin: true }));
 app.use('/public', express.static('public'));
 app.use('/api/auth',LoginRouter);
 app.use('/api/product',ProductRouter);
+app.use('/api/category',CategoryRouter)
 
 const port = process.env.PORT || 8080;
 
