@@ -47,7 +47,7 @@ const ProductSchema = new Schema({
   dollerDiscount: {
     type: String,
   },
-  manufacturer: { type: Schema.Types.ObjectId, ref: "manufacturer" },
+  brand: { type: Schema.Types.ObjectId, ref: "Brands" },
   subcategory: { type: Schema.Types.ObjectId, ref: "SubCategory" },
 }, {timestamps: true });
 const model = mongoose.model("Product", ProductSchema);
