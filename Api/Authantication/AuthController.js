@@ -1,5 +1,5 @@
 const AuthService = require("./AuthService");
-const { v4: uuidv4 } = require('uuid');
+// const { v4: uuidv4 } = require('uuid');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -31,6 +31,7 @@ module.exports = {
               }
             })
             .catch((err) => {
+              console.log(err);
               if (err.code === 11000) {
                 res.status(400).json({
                   success: 400,
@@ -57,10 +58,9 @@ module.exports = {
   isuser: async (req, res) => {
     console.log(req.body, "inside is user");
     try {
-      const user = await AuthService.findOne({
-        $or: [{ email: req.body.username }, { username: req.body.username }],
-      });
-      if (user && user.userStatus === "active") {
+      const user = await AuthService.findOne({ email: req.body.email });
+      if (user?.userStatus === "active") {
+        console.log(user, "user")
         bcrypt.compare(req.body.password, user.password, (err, response) => {
           if (response) {
             var token = jwt.sign(
@@ -71,6 +71,7 @@ module.exports = {
               { expiresIn: "1h" }
             );
             res.status(200).json({
+              success: 200,
               token: token,
               ...user._doc,
             });

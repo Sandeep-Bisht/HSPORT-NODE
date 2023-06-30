@@ -1,28 +1,33 @@
-const AuthModal =require('./AuthModel');
+const UserModel =require('./AuthModel');
 module.exports={
 create:(data)=>{
     console.log("inisde cretae service", data)
-    return AuthModal.create(data)
+    try {
+        return UserModel.create(data)
+    } catch (error) {
+        console.log(error)
+    }
+    
 },
 isuser:(data)=>{
-    return AuthModal.find(data)
+    return UserModel.find(data)
 },
 find_by_id:(_id)=>{
-    return  AuthModal.find({_id})
+    return  UserModel.find({_id})
 },
 find_all:(data)=>{
-    return AuthModal.find(data)
+    return UserModel.find(data)
 },
 find_and_update:(_id,data)=>{
-    return AuthModal.findOneAndUpdate({_id},data)
+    return UserModel.findOneAndUpdate({_id},data)
     },
 find_and_delete:(_id)=>{
-    return AuthModal.findByIdAndRemove({_id})
+    return UserModel.findByIdAndRemove({_id})
 },
 find_by_id_update:(_id,data)=>{
-    return AuthModal.findByIdAndUpdate({_id},data)
+    return UserModel.findByIdAndUpdate({_id},data)
 },
-// findOne:(query)=>{
-//     return AuthModal.findOne(query);
-// }
+findOne:(data)=>{
+    return UserModel.findOne(data);
+}
 }
