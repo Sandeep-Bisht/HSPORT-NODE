@@ -20,8 +20,7 @@ const ProductSchema = new Schema({
     ref: "Category" 
   },
   warehouse: {
-    type: Schema.Types.ObjectId,
-    ref:"warehouse"
+    type: String,
   },
   type: {
     type: String,
@@ -38,14 +37,20 @@ const ProductSchema = new Schema({
   maximumOrder:{
     type:Number,
   },
-  dollerMrp: {
-    type: String,
-  },
   inrDiscount: {
     type: String,
   },
-  dollerDiscount: {
-    type: String,
+  gender:{
+    type:String,
+  },
+  height:{
+    type:String,
+  },
+  width:{
+    type:String,
+  },
+  weight:{
+    type:String,
   },
   brand: { type: Schema.Types.ObjectId, ref: "Brands" },
   subcategory: { type: Schema.Types.ObjectId, ref: "SubCategory" },

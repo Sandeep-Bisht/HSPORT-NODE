@@ -8,7 +8,7 @@ const SubCategoryService = require("./SubCategoryService");
           if (result) {
             res.status(200).json({
               success: 200,
-              message: "Manufacturer created succefully",
+              message: "Subcategory created succefully",
             });
           } else {
             res.json({

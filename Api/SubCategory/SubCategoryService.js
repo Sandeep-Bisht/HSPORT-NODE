@@ -7,7 +7,7 @@ find_by_id:(_id)=>{
     return  SubCategoryModal.find({_id})
 },
 find_all:()=>{
-    return SubCategoryModal.find().populate("Category")
+    return SubCategoryModal.find().populate("category")
 },
 find_and_update:(_id,data)=>{
     return SubCategoryModal.findOneAndUpdate({_id},data)
