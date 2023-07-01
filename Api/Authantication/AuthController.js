@@ -2,10 +2,11 @@ const AuthService = require("./AuthService");
 // const { v4: uuidv4 } = require('uuid');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { omit } = require("lodash");
 
 module.exports = {
   create: (req, res) => {
-    console.log("inside cretae ", req.body)
+    console.log("inside cretae ", req.body);
     const { password } = req.body;
     bcrypt.hash(password, 10, (error, hash) => {
       if (error) {
@@ -18,16 +19,16 @@ module.exports = {
             password: hash,
             email: req.body.email,
             role: req.body.role,
-            userStatus: "active",            
+            userStatus: "active",
           };
           AuthService.create(data)
             .then((result) => {
               if (result) {
-               res.status(200).json({
-                success: 200,
-                data : result,
-                msg: "User created!"
-               })
+                res.status(200).json({
+                  success: 200,
+                  data: result,
+                  msg: "User created!",
+                });
               }
             })
             .catch((err) => {
@@ -60,20 +61,27 @@ module.exports = {
     try {
       const user = await AuthService.findOne({ email: req.body.email });
       if (user?.userStatus === "active") {
-        console.log(user, "user")
+        console.log(user, "user");
         bcrypt.compare(req.body.password, user.password, (err, response) => {
           if (response) {
+            const userdata = { ...user._doc };
+            delete userdata.password;
+            delete userdata.createdAt;
+            delete userdata.updatedAt;
+            delete userdata.__v;
             var token = jwt.sign(
               {
-                username: req.body.username,
+                email: req.body.email,
               },
               "this is my hindustan sport key",
               { expiresIn: "1h" }
             );
+
+            console.log(userdata, "userrrrrrrrr");
             res.status(200).json({
               success: 200,
               token: token,
-              ...user._doc,
+              user: userdata,
             });
           } else {
             res.json({
@@ -177,7 +185,7 @@ module.exports = {
       });
     }
   },
-  find_by_id_update:(req,res)=>{
+  find_by_id_update: (req, res) => {
     const { _id } = req.body;
     const { password } = req.body;
     bcrypt.hash(password, 10, (error, hash) => {
@@ -185,8 +193,7 @@ module.exports = {
         res.status(500).json({
           msg: "internal Server Error Create",
         });
-      }
-      else{
+      } else {
         try {
           var data = {
             username: req.body.username,
@@ -194,7 +201,7 @@ module.exports = {
             phonenumber: req.body.phonenumber,
             role: req.body.role,
             userStatus: req.body.userStatus,
-            password:hash,
+            password: hash,
             organization: req.body.organization,
           };
           AuthService.find_and_update(_id, data).then((result) => {
@@ -218,9 +225,8 @@ module.exports = {
           });
         }
       }
-    
-  })
-},
+    });
+  },
 
   find_and_delete: (req, res) => {
     const { _id } = req.body;
