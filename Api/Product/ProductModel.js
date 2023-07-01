@@ -6,7 +6,15 @@ const ProductSchema = new Schema({
     type: String,
     unique: true,
   },
+  slug :{
+    required:true,
+    type:String,
+    unique:true,
+  },
   description: {
+    type: String,
+  },
+  sortDescription:{
     type: String,
   },
   image: {
