@@ -3,8 +3,8 @@ module.exports={
 create:(data)=>{
     return WishlistModal.create(data)
 },
-find_by_id:(userid)=>{
-    return  WishlistModal.find({userid}).populate("productId")
+find_by_id:(userId)=>{
+    return  WishlistModal.find({userId}).populate("productId")
 },
 find_and_update:(_id,userid,order)=>{
 return WishlistModal.findOneAndUpdate({_id},{userid,order})
