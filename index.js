@@ -9,7 +9,8 @@ const ProductRouter = require('./Api/Product/ProductRouting');
 const TopBrandsRouter = require('./Api/TopBrands/TopBrandsRouting');
 const CategoryRouter = require('./Api/Category/CategoryRouting');
 const SubCategoryRouter = require('./Api/SubCategory/SubCategoryRouting');
-const WishlistRouter = require('./Api/Wishlist/WishlistRouting')
+const WishlistRouter = require('./Api/Wishlist/WishlistRouting');
+const CartRouter = require('./Api/Cart/CartRouting')
 
 
 
@@ -29,6 +30,7 @@ app.use('/api/brands', TopBrandsRouter);
 app.use('/api/category', CategoryRouter);
 app.use('/api/subcategory', SubCategoryRouter);
 app.use('/api/wishlist', WishlistRouter);
+app.use('/api/cart', CartRouter);
 
 const port = process.env.PORT || 8080;
 

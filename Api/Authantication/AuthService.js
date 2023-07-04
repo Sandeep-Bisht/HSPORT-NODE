@@ -1,7 +1,7 @@
 const UserModel =require('./AuthModel');
 module.exports={
 create:(data)=>{
-    console.log("inisde cretae service", data)
+    // console.log("inisde cretae service", data)
     try {
         return UserModel.create(data)
     } catch (error) {

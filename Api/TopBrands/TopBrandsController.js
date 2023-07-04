@@ -39,7 +39,7 @@ module.exports = {
     }    
   },
   find_all: (req, res, next) => {
-    console.log("inside find")
+    // console.log("inside find")
     try {
         TopBrandsService.find_all().then((result) => {
         if (result) {

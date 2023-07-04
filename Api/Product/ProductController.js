@@ -72,7 +72,7 @@ module.exports = {
   find_by_id:(req,res,next) =>{
     
     let _id = { ...req.body }
-    console.log(_id, "inside find by id")
+    // console.log(_id, "inside find by id")
     try {            
       ProductService.find_by_id(_id).then((result) => {
         if (result) {  

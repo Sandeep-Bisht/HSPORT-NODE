@@ -1,7 +1,7 @@
 const WishlistService = require("./WishlistService");
 module.exports = {
   create: (req, res) => {
-    console.log("inside create wishlist", req.body)
+    // console.log("inside create wishlist", req.body)
         try {
           let data = {...req.body};  
           WishlistService.create(data).then((result) => {
@@ -28,7 +28,7 @@ module.exports = {
   },  
   find_by_id:(req,res,next) =>{
     const {userId}=req.body
-    console.log("inside find by id",userId)
+    // console.log("inside find by id",userId)
     try {            
       WishlistService.find_by_id(userId).then((result) => {
         if (result.length>=0) {  

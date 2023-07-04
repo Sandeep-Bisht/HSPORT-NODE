@@ -39,7 +39,7 @@ module.exports = {
     }
   },
   find_all: (req, res, next) => {
-    console.log("inisde find all")
+    // console.log("inisde find all")
 
     try {
       CategoryService.find_all().then((result) => {
