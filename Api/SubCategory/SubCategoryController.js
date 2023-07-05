@@ -26,7 +26,7 @@ const SubCategoryService = require("./SubCategoryService");
       }
     },
     find_all: (req, res, next) => {
-        console.log("inside finda all")
+        // console.log("inside finda all")
       try {
         SubCategoryService.find_all().then((result) => {
           if (result) {

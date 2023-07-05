@@ -6,7 +6,6 @@ const { omit } = require("lodash");
 
 module.exports = {
   create: (req, res) => {
-    console.log("inside cretae ", req.body);
     const { password } = req.body;
     bcrypt.hash(password, 10, (error, hash) => {
       if (error) {
@@ -57,11 +56,10 @@ module.exports = {
     });
   },
   isuser: async (req, res) => {
-    console.log(req.body, "inside is user");
+    // console.log(req.body, "inside is user");
     try {
       const user = await AuthService.findOne({ email: req.body.email });
       if (user?.userStatus === "active") {
-        console.log(user, "user");
         bcrypt.compare(req.body.password, user.password, (err, response) => {
           if (response) {
             const userdata = { ...user._doc };
@@ -77,7 +75,6 @@ module.exports = {
               { expiresIn: "1h" }
             );
 
-            console.log(userdata, "userrrrrrrrr");
             res.status(200).json({
               success: 200,
               token: token,
