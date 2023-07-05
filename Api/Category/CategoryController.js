@@ -50,7 +50,7 @@ module.exports = {
           });
         } else {
           res.json({
-            sucess: 400,
+            success: 400,
             message: "Data Not Found",
           });
         }

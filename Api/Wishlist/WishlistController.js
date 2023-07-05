@@ -81,12 +81,11 @@ module.exports = {
   find_and_delete:(req,res)=>{
     const {_id} = req.body
     try{  
-      WishlistService.find_and_delete(_id).then((result) => {  
+      WishlistService.find_and_delete(_id).then((result) => { 
           if (result != "") {  
             res.status(200).json({
-              // data: result,
               status: 200,
-              msg:'cart item deleted'
+              msg:'Wishlist item deleted'
             });                 
           } else {
             res.json({
@@ -103,6 +102,6 @@ module.exports = {
             message: "Please provide correct information",
           });
         }     
-  }
+   }
 
 };
