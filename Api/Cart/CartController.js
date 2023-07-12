@@ -65,11 +65,13 @@ module.exports = {
     }
   },
   find_and_update:(req,res,next)=>{ 
-    console.log("insdie finde and update")
+    // console.log("insdie finde and update")
   const{_id,userid,order}=req.body
+  console.log("insdie finde and update", _id,userid,order)
   try{  
   CartService.find_and_update(_id,userid,order).then((result) => { 
-      if (result.length > 0) {
+    console.log(result, "resulteee ")
+      if (result) {
         res.status(200).json({          
           data: result,
           msg:'data found'
