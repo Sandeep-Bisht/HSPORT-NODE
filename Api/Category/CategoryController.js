@@ -96,7 +96,7 @@ module.exports = {
       description:description,
     }   
     if(req.files[0]){
-      data.images = req.files;     
+      data.image = req.files;     
     } 
     try{  
     CategoryService.find_and_update(_id,data).then((result) => {      

@@ -82,7 +82,7 @@ const SubCategoryService = require("./SubCategoryService");
         category:category,
       }   
       if(req.files[0]){
-        data.images = req.files;     
+        data.image = req.files;     
       }  
       try{  
         SubCategoryService.find_and_update(_id,data).then((result) => {      
