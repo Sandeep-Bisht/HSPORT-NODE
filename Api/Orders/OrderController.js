@@ -21,8 +21,8 @@ module.exports = {
       metadata: {
         userid: req.body.userid,
         //cart: order,
-        // customerName: req.body.username,
-        // customerNumber: req.body.mobile,
+        customerName: req.body.username,
+        customerNumber: req.body.mobile,
         customerEmail: req.body.email,
         order_no: req.body.order_no,
       },
@@ -260,6 +260,8 @@ module.exports = {
 };
 
 const createOrder = async (customer, data) => {
+  console.log("inisde createOrder ", customer, "datatatattatata", data)
+
   //const Items = JSON.parse(customer.metadata.cart);
   let newOrder = {
     userid: customer.metadata.userid,
@@ -293,7 +295,7 @@ const createOrder = async (customer, data) => {
             const productId = item.productid;
             const purchasedQty = parseInt(item.quantity);
             await ProductModal.findOneAndUpdate(
-              { _id: ObjectId(productId) },
+              { _id: new ObjectId(productId) },
               { $inc: { quantity: -purchasedQty } },
               { new: true }
             );
@@ -304,32 +306,7 @@ const createOrder = async (customer, data) => {
        
         try {
           OrderService.create(newOrder).then((result) => {
-            if (result) {
-              // Send email to user
-              const transporter = nodemailer.createTransport({
-                host: "smtppro.zoho.com",
-                port: 587,
-                auth: {
-                  user: "admin@nutrazik.com",
-                  pass: "Nutrazik@123",
-                },
-              });
-
-              const mailOptions = {
-                from: "admin@nutrazik.com",
-                to: newOrder.userEmail,
-                subject: "Order has been successfully placed",
-                text: `Hi ${newOrder.username},\n\nYour order has been placed successfully with order id ${newOrder.order_no} .\n\n
-                Thanks for choosing Nutrazik.\n\n Best regards,
-        Nutrazik\n+91-7500872014`,
-              };
-              try {
-                transporter.sendMail(mailOptions);
-              
-              } catch (error) {
-                console.error(error);
-              }
-            } else {
+            if (result) { 
               OrderService.create(newOrder);
             }
           });         
