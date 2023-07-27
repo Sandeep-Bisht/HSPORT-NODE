@@ -124,6 +124,7 @@ module.exports = {
       stripe.customers
         .retrieve(data.customer)
         .then((customer) => {
+          console.log("inside before create order")
           createOrder(customer, data);
         })
         .catch((err) => console.log(err.message));
@@ -260,12 +261,10 @@ module.exports = {
 };
 
 const createOrder = async (customer, data) => {
-  console.log("inisde createOrder ", customer, "datatatattatata", data)
-
   //const Items = JSON.parse(customer.metadata.cart);
   let newOrder = {
     userid: customer.metadata.userid,
-    //order: JSON.parse(customer.metadata.cart),
+    order: {},
     customerId: customer.id,
     mobile: customer.metadata.customerNumber,
     username: customer.metadata.customerName,
@@ -292,6 +291,7 @@ const createOrder = async (customer, data) => {
         newOrder.order = result;
         try {
           for (let item of result[0].order) {
+            console.log("inside product delete")
             const productId = item.productid;
             const purchasedQty = parseInt(item.quantity);
             await ProductModal.findOneAndUpdate(
@@ -306,17 +306,14 @@ const createOrder = async (customer, data) => {
        
         try {
           OrderService.create(newOrder).then((result) => {
-            if (result) { 
-              OrderService.create(newOrder);
-            }
+              console.log("inside order service now send email to user here", result)
+            
           });         
          
         } catch (err) {
           console.log(err);
         }
-      } else {
-        console.log("inside else");
-      }
+      } 
     });
   } catch (err) {
     console.log(err);
