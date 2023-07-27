@@ -63,7 +63,7 @@ module.exports = {
       ],
       line_items: productArray,
       mode: "payment",
-      success_url: `${process.env.CLIENT_URL}/orderSuccess`,
+      success_url: `${process.env.CLIENT_URL}/PaymentSuccessfull`,
       cancel_url: `${process.env.CLIENT_URL}/cart`,
     });
     try {

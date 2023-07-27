@@ -12,6 +12,11 @@ const CategorySchema = new Schema({
    description:{
     type: String,  
    },
+   slug :{
+    required:true,
+    type:String,
+    unique:true,
+  },
    featuredCategories : {
     type: String,
    },
