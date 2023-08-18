@@ -12,6 +12,7 @@ const SubCategoryRouter = require('./Api/SubCategory/SubCategoryRouting');
 const WishlistRouter = require('./Api/Wishlist/WishlistRouting');
 const CartRouter = require('./Api/Cart/CartRouting');
 const OrderRouter = require('./Api/Orders/OrderRouting')
+const SubscribedRouter = require('./Api/Subscribed/SubscribedRouting')
 
 
 
@@ -33,6 +34,7 @@ app.use('/api/subcategory', SubCategoryRouter);
 app.use('/api/wishlist', WishlistRouter);
 app.use('/api/cart', CartRouter);
 app.use('/api/order',OrderRouter);
+app.use('/api/subscribed',SubscribedRouter)
 
 const port = process.env.PORT || 8080;
 
