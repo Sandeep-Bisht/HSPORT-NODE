@@ -1,5 +1,6 @@
 const ProductService = require("./ProductService");
 const slugify = require("slugify");
+const mongoose = require('mongoose');
 
 module.exports = {
   create: (req, res) => {
@@ -70,9 +71,7 @@ module.exports = {
       }  
   },
   find_by_id:(req,res,next) =>{
-    
     let _id = { ...req.body }
-    // console.log(_id, "inside find by id")
     try {            
       ProductService.find_by_id(_id).then((result) => {
         if (result) {  
@@ -96,6 +95,44 @@ module.exports = {
       });
     }
   },
+
+  find_product_by_category: (req, res, next) => {
+    const category = new mongoose.Types.ObjectId(req.body.category);
+    try {
+      ProductService.find_product_by_category(category)
+        .then((result) => {
+          if (result) {
+            res.status(200).json({
+              data: result,
+              msg: 'Data found',
+            });
+          } else {
+            res.json({
+              error: 400,
+              message: "Data not found",
+            });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          res.json({
+            error: 500,
+            message: "Internal server error",
+          });
+        });
+    } catch (err) {
+      console.log(err);
+      res.json({
+        error: 400,
+        message: "Please provide correct information",
+      });
+    }
+  },
+  
+
+
+
+
   find_and_update:(req,res,next)=>{
     const { _id, name, description, warehouse, category, subcategory, quantity, reorderQuantity, maximumOrder, inrMrp, dollerMrp, inrDiscount, dollerDiscount, manufacturer, type } = req.body;
     const slug = slugify(name, { lower: true });

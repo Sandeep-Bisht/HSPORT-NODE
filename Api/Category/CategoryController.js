@@ -1,9 +1,12 @@
+const { default: slugify } = require("slugify");
 const CategoryService = require("./CategoryService");
 //end code for images
 module.exports = {
   create: async (req, res) => {
     try {
-      var data = { ...req.body,image:req.files };
+      const { name, ...otherData } = req.body;
+      const slug = slugify(name , {lower : true})
+      var data = { ...otherData, name, slug, image:req.files };
       CategoryService.create(data).then((result) => {
         if (result) {
           res.json({
@@ -50,7 +53,7 @@ module.exports = {
           });
         } else {
           res.json({
-            sucess: 400,
+            success: 400,
             message: "Data Not Found",
           });
         }
@@ -95,7 +98,7 @@ module.exports = {
       description:description,
     }   
     if(req.files[0]){
-      data.images = req.files;     
+      data.image = req.files;     
     } 
     try{  
     CategoryService.find_and_update(_id,data).then((result) => {      
@@ -122,7 +125,7 @@ module.exports = {
         });
       }
     },
-    find_and_delete:(req,res)=>{
+  find_and_delete:(req,res)=>{
       const {_id} = req.body
       try{  
         CategoryService.find_and_delete(_id).then((result) => {      

@@ -17,6 +17,8 @@ module.exports = {
           var data = {
             password: hash,
             email: req.body.email,
+            username: req.body.username,
+            phonenumber: req.body.phonenumber,
             role: req.body.role,
             userStatus: "active",
           };
@@ -33,15 +35,15 @@ module.exports = {
             .catch((err) => {
               console.log(err);
               if (err.code === 11000) {
-                res.status(400).json({
+                res.status(200).json({
                   success: 400,
-                  message: "User already exists",
+                  msg: "User already exists",
                 });
               } else {
                 console.log(err);
                 res.json({
                   success: 400,
-                  message: "Please provide correct information",
+                  msg: "Please provide correct information",
                 });
               }
             });
@@ -49,7 +51,7 @@ module.exports = {
           console.log(err);
           res.json({
             sucess: 400,
-            message: "Please provide correct information",
+            msg: "Please provide correct information",
           });
         }
       }
@@ -204,12 +206,12 @@ module.exports = {
           AuthService.find_and_update(_id, data).then((result) => {
             if (result) {
               res.json({
-                success: 200,
+                status: 200,
                 message: "User Updated succefully",
               });
             } else {
               res.json({
-                success: 400,
+                status: 400,
                 message: "Please provide correct",
               });
             }
@@ -217,7 +219,7 @@ module.exports = {
         } catch (err) {
           console.log(err);
           res.json({
-            success: 400,
+            status: 400,
             message: "Please provide correct information",
           });
         }

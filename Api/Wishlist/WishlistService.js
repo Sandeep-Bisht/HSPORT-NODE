@@ -11,5 +11,6 @@ return WishlistModal.findOneAndUpdate({_id},{userid,order})
 },
 find_and_delete:(_id)=>{
     return WishlistModal.findByIdAndRemove({_id})
+    // return WishlistModal.findByIdAndRemove(_id, { new: true });
 }
 }

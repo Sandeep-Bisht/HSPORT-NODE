@@ -1,7 +1,6 @@
 const CartService = require("./CartService");
 module.exports = {
   create: (req, res) => {
-    console.log("inside create cart", req.body);
     try {
       var data = { ...req.body };
       CartService.create(data)
@@ -65,11 +64,11 @@ module.exports = {
     }
   },
   find_and_update:(req,res,next)=>{ 
-    console.log("insdie finde and update")
+    // console.log("insdie finde and update")
   const{_id,userid,order}=req.body
   try{  
   CartService.find_and_update(_id,userid,order).then((result) => { 
-      if (result.length > 0) {
+      if (result) {
         res.status(200).json({          
           data: result,
           msg:'data found'

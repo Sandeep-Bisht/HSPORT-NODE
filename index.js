@@ -10,8 +10,10 @@ const TopBrandsRouter = require('./Api/TopBrands/TopBrandsRouting');
 const CategoryRouter = require('./Api/Category/CategoryRouting');
 const SubCategoryRouter = require('./Api/SubCategory/SubCategoryRouting');
 const WishlistRouter = require('./Api/Wishlist/WishlistRouting');
-const CartRouter = require('./Api/Cart/CartRouting')
-
+const CartRouter = require('./Api/Cart/CartRouting');
+const OrderRouter = require('./Api/Orders/OrderRouting')
+const SubscribedRouter = require('./Api/Subscribed/SubscribedRouting')
+const ForgetPassword=require('./Api/ForgetPassword/ForgetPasswordRouting')
 
 
 db();
@@ -31,6 +33,9 @@ app.use('/api/category', CategoryRouter);
 app.use('/api/subcategory', SubCategoryRouter);
 app.use('/api/wishlist', WishlistRouter);
 app.use('/api/cart', CartRouter);
+app.use('/api/order',OrderRouter);
+app.use('/api/subscribed',SubscribedRouter)
+app.use('/api/forgetpassword',ForgetPassword);
 
 const port = process.env.PORT || 8080;
 
