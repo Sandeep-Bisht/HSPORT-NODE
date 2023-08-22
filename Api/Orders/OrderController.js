@@ -14,8 +14,6 @@ const stripe = Stripe(process.env.STRIPE_KEY);
 
 module.exports = {
   create: async (req, res) => {
-    console.log("inside cretae order", req.body)
-  
     const { order } = req.body;
     const customer = await stripe.customers.create({
       metadata: {

@@ -62,7 +62,6 @@ module.exports = {
     verify: (req, res) => {
       const { token } = req.body;
       const userToken = cache.get("userToken");
-      console.log(token,"in backend check token",userToken)
       if (token.includes(userToken)) 
       {
         const decodedToken = jwtToken.decode(userToken);
