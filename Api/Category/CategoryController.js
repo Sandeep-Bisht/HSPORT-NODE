@@ -68,7 +68,6 @@ module.exports = {
   },
   find_by_id: (req, res, next) => {
     const { _id } = req.body;
-    console.log("inisde", _id)
     try {
       CategoryService.find_by_id(_id).then((result) => {
         if (result.length > 0) {

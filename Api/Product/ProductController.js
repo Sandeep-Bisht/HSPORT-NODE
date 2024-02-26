@@ -71,10 +71,7 @@ module.exports = {
       }  
   },
   find_by_id:(req,res,next) =>{
-    
     let _id = { ...req.body }
-
-    //  console.log(_id, "inside find by id")
     try {            
       ProductService.find_by_id(_id).then((result) => {
         if (result) {  
@@ -101,13 +98,9 @@ module.exports = {
 
   find_product_by_category: (req, res, next) => {
     const category = new mongoose.Types.ObjectId(req.body.category);
-  
-    console.log(category, "inside find by id");
-  
     try {
       ProductService.find_product_by_category(category)
         .then((result) => {
-          console.log(result, "result"); // Log the resolved data
           if (result) {
             res.status(200).json({
               data: result,
